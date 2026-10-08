@@ -42,6 +42,7 @@ public class Battle {
                 System.out.println("1.攻撃");
                 System.out.println("2.回復");
                 System.out.println("3.必殺技");
+                System.out.println("4.防御");
                 
 
                 int choice = sc.nextInt();
@@ -57,10 +58,15 @@ public class Battle {
                 } else if(choice == 3) {
 
                     hero.specialAttack(monster);
+                    
+                } else if (choice == 4) {
+                	
+                    hero.defending = true;
+                    System.out.println("勇者は身を守った！");                
 
                 } else {
 
-                    System.out.println("1～3を入力してください");
+                    System.out.println("1～4を入力してください");
                 }
 
                 if (monster.hp <= 0) {
@@ -74,7 +80,20 @@ public class Battle {
                     break;
                 }
 
-                monster.attack(hero);
+                int damage = monster.attackPower;
+
+                if (hero.defending) {
+                    damage = damage / 2;
+                    System.out.println("防御でダメージを半減した！");
+                }
+
+                hero.hp -= damage;
+
+                System.out.println(
+                        monster.name + "の攻撃！ "
+                        + damage + "ダメージ！");
+
+                hero.defending = false;
 
                 if (hero.hp <= 0) {
 

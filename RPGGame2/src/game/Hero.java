@@ -5,6 +5,8 @@ public class Hero extends Character {
     int level;
     int exp;
     int specialCount;
+    
+    boolean defending = false;
 
 
     public Hero(String name, int hp) {
@@ -14,7 +16,7 @@ public class Hero extends Character {
         this.exp = 0;
         this.specialCount = 3;
     }
-
+    
 
     
     public void specialAttack(Monster monster) {
